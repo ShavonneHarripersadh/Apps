@@ -1,0 +1,46 @@
+﻿@page
+@model BetsModel
+@{
+    ViewData["Title"] = "Bets";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@Model.Message</h3>
+
+<form  method="post">
+    <h3>@Model.Message</h3>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>BetID</th>
+                <th>PunterID</th>
+                <th>MarketID</th>
+                <th>Odds</th>
+                <th>Stake</th>
+                <th>Potential Payout</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bets in Model.Bet)
+            {
+                <tr>
+                    <td>@bets.BetID</td>
+                    <td>@bets.PunterID</td>
+                    <td>@bets.MarketID</td>
+                    <td>@bets.Odds</td>
+                    <td>@bets.Stake</td>
+                    <td>@bets.PotentialPayout</td>
+                    @*<td>
+                        <a asp-page="./Edit" asp-route-id="@bets.BetID">edit</a>
+
+                        <button type="submit" asp-page-handler="delete"
+                                asp-route-id="@custbetsomer.Id">
+                            delete
+                        </button>
+                    </td>*@
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</form>

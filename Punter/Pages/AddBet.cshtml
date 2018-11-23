@@ -1,0 +1,19 @@
+﻿@page  "{id:int}"
+@model Punters.Pages.AddBetModel
+@{
+    ViewData["Title"] = "AddBet";
+}
+
+<h2>AddBet</h2>
+
+<form method="post">
+    <div asp-validation-summary="All">
+            <input asp-for="Bet.Stake" />
+            <span asp-validation-for="Bet.Stake"></span>
+        </div>
+    <div><button class="btn btn-success" type="submit">Add</button></div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

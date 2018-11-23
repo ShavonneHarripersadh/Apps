@@ -1,0 +1,20 @@
+﻿@page
+@model Punters.Pages.CreateMarketsModel
+@{
+    ViewData["Title"] = "CreateMarkets";
+}
+
+<h2>Create Markets</h2>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
+<p>Enter Your Name: </p>
+
+<form method="POST">
+    <div asp-validation-summary="All"></div>
+    <div> Name : <input asp-for="Market.MarketName" /></div>
+    <div> <br>Odds : <input asp-for="Market.Odds" /></div>
+    <input type="submit" />
+</form>

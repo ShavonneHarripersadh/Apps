@@ -1,0 +1,66 @@
+﻿@page
+@model Punters.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<form method="post">
+    <h3>@Model.Message</h3>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Balance</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var punter in Model.Punter)
+            {
+                var p = punter.PunterID;
+                <tr>
+                    <td>@punter.PunterID</td>
+                    <td>@punter.PunterName</td>
+                    <td>@punter.Balance</td>
+                    <td>
+                        <a class="btn btn-info" asp-page="./EditPunter" asp-route-id="@punter.PunterID">edit</a>
+
+                        @*<button class="btn btn-danger glyphicon glyphicon-trash" type="submit" asp-page-handler="delete"
+        asp-route-id="@punter.PunterID"></button>*@
+                       
+                        <a href="#examplemodal" class="btn btn-danger" data-toggle="modal" data-id="@punter.PunterID" data-target="#exampleModal">delete</a>
+
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                           
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Remove @punter.PunterID </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Press Proceed to remove @punter.PunterID/ Close to cancel!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" asp-route-id="@punter.PunterID" asp-page-handler="delete" class="btn btn-primary">Proceed</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                
+            }
+        </tbody>
+
+    </table>
+    <a class="btn btn-success" asp-page="./CreatePunter">Create</a>
+
+</form>

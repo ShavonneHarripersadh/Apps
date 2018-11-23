@@ -1,0 +1,42 @@
+﻿@page
+@model MarketsModel
+@{
+    ViewData["Title"] = "Markets";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@Model.Message</h3>
+
+<form method="post">
+    <h3>@Model.Message</h3>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Odds</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var market in Model.Market)
+            {
+                <tr>
+                    <td>@market.MarketID</td>
+                    <td>@market.MarketName</td>
+                    <td>@market.Odds</td>
+                    <td>
+                        <a class="btn btn-info" asp-page="./EditMarket" asp-route-id="@market.MarketID">edit</a>
+
+                        <button class="btn btn-danger" type="submit" asp-page-handler="delete"
+                                asp-route-id="@market.MarketID">
+                            delete 
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    <a asp-page="./CreateMarkets">Create</a>
+</form>

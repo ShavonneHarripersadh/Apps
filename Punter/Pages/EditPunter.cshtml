@@ -1,0 +1,34 @@
+﻿@page "{id:int}"
+@model Punters.Pages.EditPunterModel
+@{
+    ViewData["Title"] = "EditPunter";
+}
+
+<h2>Edit Punter - @Model.Punter.PunterID</h2>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Punter.PunterID" type="hidden" />
+    <div>
+        <label asp-for="Punter.PunterName"></label>
+        <div>
+            <input asp-for="Punter.PunterName" />
+            <span asp-validation-for="Punter.PunterName"></span>
+        </div>
+    </div>
+    <div>
+        <label asp-for="Punter.Balance"></label>
+        <div>
+            <input asp-for="Punter.Balance" />
+            <span asp-validation-for="Punter.Balance"></span>
+        </div>
+    </div>
+    <div><button type="submit">Save</button></div>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
+

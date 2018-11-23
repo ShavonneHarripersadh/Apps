@@ -1,0 +1,32 @@
+﻿@page "{id:int}"
+@model Punters.Pages.EditMarketModel
+@{
+    ViewData["Title"] = "EditMarket";
+}
+
+<h2>Edit Market</h2>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Market.MarketID" type="hidden" />
+    <div>
+        <label asp-for="Market.MarketName"></label>
+        <div>
+            <input asp-for="Market.MarketName" />
+            <span asp-validation-for="Market.MarketName"></span>
+        </div>
+    </div>
+    <div>
+        <label asp-for="Market.Odds"></label>
+        <div>
+            <input asp-for="Market.Odds" />
+            <span asp-validation-for="Market.Odds"></span>
+        </div>
+    </div>
+    <div><button type="submit">Save</button></div>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

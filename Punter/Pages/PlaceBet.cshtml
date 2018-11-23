@@ -1,0 +1,66 @@
+﻿@page
+@model Punters.Pages.PlaceBetModel
+@{
+    ViewData["Title"] = "Place Bet";
+}
+
+<h2>PlaceBet</h2>
+    <label>Search For Punter By ID</label>       
+
+<div class="row">
+    <form method="get">
+        <div asp-validation-summary="All"></div>
+        <div class="col-sm-6">
+
+            <div>
+                <input asp-for="Punter.PunterID" name="ID" />
+                <span asp-validation-for="Punter.PunterID"></span>
+                <button type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+
+    @if (Model.Punter != null)
+    {
+        <label class="col-sm-2">Name: @Model.Punter.PunterName</label>
+        <label class="col-sm-2">Balance :R @Model.Punter.Balance</label>
+    }
+</div>
+
+
+
+<form method="post">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Odds</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Punter != null)
+            {
+            @foreach (var market in Model.Market)
+            {
+                <tr>
+                    <td>@market.MarketID</td>
+                    <td>@market.MarketName</td>
+                    <td>@market.Odds</td>
+                    <td>
+                        <a class="btn btn-primary" asp-page="./AddBet" asp-route-id="@market.MarketID">Add Bet</a>
+
+                    </td>
+                </tr>
+            }}
+        </tbody>
+
+    </table>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
+
